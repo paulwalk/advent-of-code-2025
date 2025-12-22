@@ -51,7 +51,7 @@ pub fn solve_pt_2(data_file_path: &str) -> u64{
     running_total
 }
 
-fn get_highest_number_and_index(candidates: &String, sliding_window_size: usize) -> (u8, usize) {
+fn get_highest_number_and_index(candidates: &str, sliding_window_size: usize) -> (u8, usize) {
     let end = sliding_window_size;
     let _window = &candidates[0..end];
     let mut highest_number: u8 = candidates[0..=0].parse::<u8>().unwrap();

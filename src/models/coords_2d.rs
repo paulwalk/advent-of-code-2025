@@ -30,8 +30,8 @@ pub fn compare_area(a: &Coord2DPair, b: &Coord2DPair) -> Ordering {
 }
 
 pub fn area(p: Coord2D, q: Coord2D) -> u64 {
-    let mut width: i64 = 0;
-    let mut height: i64 = 0;
+    let mut width: i64;
+    let mut height: i64;
     if p.x <= q.x {
         width = q.x - p.x;
     } else {

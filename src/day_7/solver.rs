@@ -88,9 +88,7 @@ fn get_full_tree(input_grid: Vec<Vec<char>>) -> Vec<Vec<char>> {
     let mut grid = input_grid.clone();
     for row in 1..grid.len() {
         for col in 0..grid[0].len() {
-            if grid[row - 1][col] == START {
-                grid[row][col] = BEAM;
-            } else if grid[row - 1][col] == BEAM && grid[row][col] == EMPTY {
+            if grid[row - 1][col] == START || (grid[row - 1][col] == BEAM && grid[row][col] == EMPTY) {
                 grid[row][col] = BEAM;
             } else if grid[row - 1][col] == BEAM && grid[row][col] == SPLITTER {
                 grid[row][col - 1] = BEAM;
@@ -100,4 +98,5 @@ fn get_full_tree(input_grid: Vec<Vec<char>>) -> Vec<Vec<char>> {
     }
     grid
 }
+
 

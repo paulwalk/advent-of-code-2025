@@ -6,8 +6,8 @@ use std::collections::HashSet;
 pub(crate) const DAY_NUM: u8 = 9;
 
 pub fn solve_pt_1(data_file_path: &str) -> u64 {
-    let mut coords: Vec<Coord2D > = vec![];
-    let mut sorted_red_pairs: Vec<Coord2DPair> = vec![];
+    let coords: Vec<Coord2D>;
+    let sorted_red_pairs: Vec<Coord2DPair>;
     (coords, sorted_red_pairs) = new_from_data_file(data_file_path);
     let pair = sorted_red_pairs.first().unwrap();
     // print(coords);

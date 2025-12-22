@@ -14,7 +14,7 @@ impl Circuits {
     }
 
     pub fn add_pair(&mut self, pair: Coord3DPair) -> u8{
-        let mut number_of_jbs_added_to_a_circuit: u8 = 0;
+        let number_of_jbs_added_to_a_circuit: u8;
         let circuit_id_containing_p: Option<Uuid> = self.contains_junction_box(&pair.p);
         let circuit_id_containing_q: Option<Uuid> = self.contains_junction_box(&pair.q);
         if circuit_id_containing_p.is_none() && circuit_id_containing_q.is_none() {
