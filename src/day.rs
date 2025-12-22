@@ -1,4 +1,3 @@
-use crate::config::*;
 
 pub struct Day {
     pub num: u8,

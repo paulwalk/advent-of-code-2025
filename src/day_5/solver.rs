@@ -57,7 +57,7 @@ fn get_ingredients(data_file_path: &str) -> Vec<usize> {
         for line in lines.map_while(Result::ok) {
             if line.contains("-") {
                 // is a range line
-            } else if line == "" {
+            } else if line.is_empty() {
                 // is a blanks line separating sections
             } else {
                 ingredients.push(line.parse::<usize>().unwrap());

@@ -6,7 +6,7 @@ use std::collections::HashSet;
 pub(crate) const DAY_NUM: u8 = 9;
 
 pub fn solve_pt_1(data_file_path: &str) -> u64 {
-    let mut coords: Vec<(Coord2D)> = vec![];
+    let mut coords: Vec<Coord2D > = vec![];
     let mut sorted_red_pairs: Vec<Coord2DPair> = vec![];
     (coords, sorted_red_pairs) = new_from_data_file(data_file_path);
     let pair = sorted_red_pairs.first().unwrap();
@@ -16,7 +16,7 @@ pub fn solve_pt_1(data_file_path: &str) -> u64 {
 
 pub fn solve_pt_2(data_file_path: &str) -> u64 {
     let mut area: u64 = 0;
-    let mut coords: Vec<(Coord2D)> = vec![];
+    let mut coords: Vec<Coord2D > = vec![];
     let mut sorted_red_pairs: Vec<Coord2DPair> = vec![];
     (coords, sorted_red_pairs) = new_from_data_file(data_file_path);
     fill_in_green_squares(&mut coords);
@@ -31,7 +31,7 @@ pub fn solve_pt_2(data_file_path: &str) -> u64 {
     area
 }
 
-pub fn new_from_data_file(data_file_path: &str) -> (Vec<(Coord2D)>, Vec<Coord2DPair>) {
+pub fn new_from_data_file(data_file_path: &str) -> (Vec<Coord2D >, Vec<Coord2DPair>) {
     let mut red_coords: Vec<Coord2D> = vec![];
     if let Ok(lines) = read_lines(data_file_path) {
         for line in lines.map_while(Result::ok) {
@@ -53,7 +53,7 @@ pub fn new_from_data_file(data_file_path: &str) -> (Vec<(Coord2D)>, Vec<Coord2DP
     (red_coords, sorted_red_pairs)
 }
 
-pub fn print(coords: Vec<(Coord2D)>) {
+pub fn print(coords: Vec<Coord2D >) {
     let grid_row = vec!['.'; (coords.max_x() + 1) as usize];
     let mut grid: Vec<Vec<char>> = vec![];
     for _ in 0..(coords.max_y() + 1) {
@@ -64,11 +64,11 @@ pub fn print(coords: Vec<(Coord2D)>) {
     }
     for row in grid {
         let row_string: String = row.iter().map(|x| x.to_string()).collect();
-        print!("{}\n", row_string);
+        println!("{}", row_string);
     }
 }
 
-pub fn fill_in_green_squares(mut coords: &mut Vec<(Coord2D)>) {
+pub fn fill_in_green_squares(coords: &mut Vec<Coord2D >) {
     let first_and_last_coords = (coords[0].clone(), coords[coords.len() - 1].clone());
     for i in 0..coords.len() - 1 {
         fill_in_green_squares_for_coords(coords, coords[i].clone(), coords[i + 1].clone());
@@ -87,25 +87,25 @@ pub fn fill_in_green_squares(mut coords: &mut Vec<(Coord2D)>) {
     }
 }
 
-pub fn fill_in_green_squares_for_coords(mut coords: &mut Vec<(Coord2D)>, point_1: Coord2D, point_2: Coord2D) {
+pub fn fill_in_green_squares_for_coords(coords: &mut Vec<Coord2D >, point_1: Coord2D, point_2: Coord2D) {
     if point_1.x == point_2.x {
         if point_1.y < point_2.y {
             for j in point_1.y + 1..point_2.y {
-                coords.push((Coord2D { x: point_1.x, y: j }));
+                coords.push(Coord2D { x: point_1.x, y: j } );
             }
         } else if point_1.y > point_2.y {
             for j in point_2.y + 1..point_1.y {
-                coords.push((Coord2D { x: point_1.x, y: j }));
+                coords.push(Coord2D { x: point_1.x, y: j } );
             }
         }
     } else if point_1.y == point_2.y {
         if point_1.x < point_2.x {
             for j in point_1.x + 1..point_2.x {
-                coords.push((Coord2D { x: j, y: point_1.y }));
+                coords.push(Coord2D { x: j, y: point_1.y } );
             }
         } else if point_1.x > point_2.x {
             for j in point_2.x + 1..point_1.x {
-                coords.push((Coord2D { x: j, y: point_1.y }));
+                coords.push(Coord2D { x: j, y: point_1.y } );
             }
         }
     } else {

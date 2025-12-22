@@ -85,7 +85,7 @@ impl Circuit {
     }
 
     pub fn contains(&self, jb: &Coord3D) -> bool {
-        self.junction_boxes.contains(&jb)
+        self.junction_boxes.contains(jb)
     }
 
     pub fn add_junction_box(&mut self, jb: Coord3D) {

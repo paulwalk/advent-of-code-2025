@@ -79,9 +79,9 @@ where
         for col in row {
             print!("{:>5}", col);
         }
-        print!("\n");
+        println!();
     }
-    print!("\n");
+    println!();
 }
 
 fn get_full_tree(input_grid: Vec<Vec<char>>) -> Vec<Vec<char>> {

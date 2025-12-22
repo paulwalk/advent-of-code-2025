@@ -14,27 +14,27 @@ pub fn solve_pt_1(data_file_path: &str) -> i64 {
     for col in 0..grid[0].len() {
         let mut numbers: Vec<i64> = vec![];
         for row in 0..grid.len() - 1 {
-            let value = &grid[row][col as usize];
+            let value = &grid[row][col];
             if value.parse::<i64>().is_ok() {
                 numbers.push(value.parse::<i64>().unwrap());
             } else {
                 panic!("Invalid value in grid: {}", value);
             }
         }
-        if grid[grid.len() - 1][col as usize] == "*" {
+        if grid[grid.len() - 1][col ] == "*" {
             let mut subtotal: i64 = 1;
             for value in numbers {
                 subtotal *= value;
             }
             running_total += subtotal;
-        } else if grid[grid.len() - 1][col as usize] == "+" {
+        } else if grid[grid.len() - 1][col ] == "+" {
             let mut subtotal: i64 = 0;
             for value in numbers {
                 subtotal += value;
             }
             running_total += subtotal;
         } else {
-            panic!("Invalid operation in grid: {}", grid[grid.len() - 1][col as usize]);
+            panic!("Invalid operation in grid: {}", grid[grid.len() - 1][col]);
         }
     }
     running_total

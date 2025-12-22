@@ -34,11 +34,11 @@ pub fn solve_pt_2(data_file_path: &str) -> u64{
     let mut running_total: u64 = 0;
     if let Ok(lines) = read_lines(data_file_path) {
         for line in lines.map_while(Result::ok) {
-            let mut sliding_window_size: usize = (line.len() - 12);
+            let mut sliding_window_size: usize = line.len() - 12 ;
             let mut target: String = "".to_string();
             let mut candidates = line.clone();
             while target.len() < 12 {
-                let number_and_index = get_highest_number_and_index(&candidates, (sliding_window_size));
+                let number_and_index = get_highest_number_and_index(&candidates, sliding_window_size );
                 target.push(number_and_index.0.to_string().chars().next().unwrap());
                 candidates = candidates[(number_and_index.1+1)..].to_string();
                 let remaining_slots = 12 - target.len();
@@ -53,7 +53,7 @@ pub fn solve_pt_2(data_file_path: &str) -> u64{
 
 fn get_highest_number_and_index(candidates: &String, sliding_window_size: usize) -> (u8, usize) {
     let end = sliding_window_size;
-    let window = &candidates[0..end];
+    let _window = &candidates[0..end];
     let mut highest_number: u8 = candidates[0..=0].parse::<u8>().unwrap();
     let mut highest_index: usize = 0;
     for i in 0..end {

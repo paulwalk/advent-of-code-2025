@@ -28,5 +28,5 @@ pub fn compare_distance(a: &Coord3DPair, b: &Coord3DPair) -> Ordering {
     } else if a.euclidian_distance() > b.euclidian_distance() {
         return Ordering::Greater;
     }
-    return Ordering::Equal;
+    Ordering::Equal
 }

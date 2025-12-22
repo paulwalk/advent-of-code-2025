@@ -1,6 +1,5 @@
 use crate::day_8::model::{Circuits};
 use crate::utilities::read_lines;
-use std::cmp::{Ordering, PartialEq};
 use crate::models::coords_3d::{compare_distance, Coord3D, Coord3DPair};
 
 pub(crate) const DAY_NUM: u8 = 8;

@@ -36,28 +36,28 @@ fn process_grid(rows: &mut Vec<Vec<char>>)  -> u64 {
             if rows[row_index][col_index] == ROLL_OF_PAPER {
                 let mut neighbour_count = 0;
                 if row_index > 0 {
-                    neighbour_count += check_neighbour(&rows, row_index - 1, col_index);
+                    neighbour_count += check_neighbour(rows, row_index - 1, col_index);
                     if col_index > 0 {
-                        neighbour_count += check_neighbour(&rows, row_index - 1, col_index - 1);
+                        neighbour_count += check_neighbour(rows, row_index - 1, col_index - 1);
                     }
                     if col_index < rows[row_index].len() - 1 {
-                        neighbour_count += check_neighbour(&rows, row_index - 1, col_index + 1);
+                        neighbour_count += check_neighbour(rows, row_index - 1, col_index + 1);
                     }
                 }
                 if row_index < rows.len() - 1 {
-                    neighbour_count += check_neighbour(&rows, row_index + 1, col_index);
+                    neighbour_count += check_neighbour(rows, row_index + 1, col_index);
                     if col_index > 0 {
-                        neighbour_count += check_neighbour(&rows, row_index + 1, col_index - 1);
+                        neighbour_count += check_neighbour(rows, row_index + 1, col_index - 1);
                     }
                     if col_index < rows[row_index].len() - 1 {
-                        neighbour_count += check_neighbour(&rows, row_index + 1, col_index + 1);
+                        neighbour_count += check_neighbour(rows, row_index + 1, col_index + 1);
                     }
                 }
                 if col_index > 0 {
-                    neighbour_count += check_neighbour(&rows, row_index, col_index - 1);
+                    neighbour_count += check_neighbour(rows, row_index, col_index - 1);
                 }
                 if col_index < rows[row_index].len() - 1 {
-                    neighbour_count += check_neighbour(&rows, row_index, col_index + 1);
+                    neighbour_count += check_neighbour(rows, row_index, col_index + 1);
                 }
                 if neighbour_count < 4 {
                     running_total += 1;
