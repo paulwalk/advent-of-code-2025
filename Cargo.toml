@@ -1,0 +1,12 @@
+[package]
+name = "aoc2025"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+clap = { version = "4.5.51", features = ["derive"] }
+flexi_logger = { version = "0.31.2", features = ["colors"] }
+log = "0.4.29"
+dotenvy = "0.15.7"
+divisors_fixed = "0.4.0"
+uuid = { version = "1.19.0", features = ["v4"] }
