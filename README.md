@@ -1,4 +1,4 @@
-# advent-of-code-2025
+# Advent-of-Code 2025
 
 This is the result of my playing with *[Advent of Code 2025](https://adventofcode.com)*, an excellent annual set of puzzles for programmers, set by [Eric Wastl](https://was.tl) (who has been doing this for 10 years!).
 
