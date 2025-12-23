@@ -25,10 +25,10 @@ mod tests {
         assert_eq!(solve_pt_1(day.data_path.as_str()), app_config.answers[&DAY_NUM][0]);
     }
 
-    // #[test]
-    // fn test_solve_day_9_part_2() {
-    //     let app_config = &AppConfiguration::new();
-    //     let day: Day = Day::new(DAY_NUM, app_config.puzzle_dir.clone());
-    //     assert_eq!(solve_pt_2(day.data_path.as_str()), app_config.answers[&DAY_NUM][1]);
-    // }
+    #[test]
+    fn test_solve_day_9_part_2() {
+        let app_config = &AppConfiguration::new();
+        let day: Day = Day::new(DAY_NUM, app_config.puzzle_dir.clone());
+        assert_eq!(solve_pt_2(day.data_path.as_str()), app_config.answers[&DAY_NUM][1]);
+    }
 }

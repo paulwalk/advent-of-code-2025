@@ -24,7 +24,7 @@ mod models;
 fn main() {
     let app_config = &AppConfiguration::new();
     let puzzle_dir = app_config.puzzle_dir.clone();
-    configure_flexi_logger(app_config.clone().log_level).expect("Failed to configure logger - quitting");
+    configure_flexi_logger(app_config.clone().log_spec).expect("Failed to configure logger - quitting");
     log::info!("Starting process");
 
     let cli = Cli::parse();

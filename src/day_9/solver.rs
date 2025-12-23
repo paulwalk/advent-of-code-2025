@@ -1,7 +1,6 @@
-use crate::models::coord_vector::MinMax;
 use crate::models::coords_2d::{compare_area, Coord2D, Coord2DPair};
 use crate::utilities::read_lines;
-use std::collections::HashSet;
+use geo::{point, Contains, LineString, Polygon};
 
 pub(crate) const DAY_NUM: u8 = 9;
 
@@ -10,7 +9,6 @@ pub fn solve_pt_1(data_file_path: &str) -> u64 {
     let sorted_red_pairs: Vec<Coord2DPair>;
     (coords, sorted_red_pairs) = new_from_data_file(data_file_path);
     let pair = sorted_red_pairs.first().unwrap();
-    // print(coords);
     pair.area
 }
 
@@ -19,12 +17,18 @@ pub fn solve_pt_2(data_file_path: &str) -> u64 {
     let mut coords: Vec<Coord2D > = vec![];
     let mut sorted_red_pairs: Vec<Coord2DPair> = vec![];
     (coords, sorted_red_pairs) = new_from_data_file(data_file_path);
-    fill_in_green_squares(&mut coords);
-    let coords_hash_set: HashSet<Coord2D> = HashSet::from_iter(coords.iter().cloned());
-    for pair in sorted_red_pairs {
-        let coords_in_rectangle: HashSet<Coord2D> = set_of_coords_in_rectangle(pair.p.clone(), pair.q.clone());
-        if coords_in_rectangle.difference(&coords_hash_set).count() == 0 {
-            area = pair.area;
+    let mut raw_coord_vector:Vec<(f64,f64)> = vec![];
+    for coord in coords.clone() {
+        raw_coord_vector.push((coord.x as f64, coord.y as f64));
+    }
+    let polygon = Polygon::new(
+        LineString::from(raw_coord_vector),
+        vec![],
+    );
+    
+    for red_pair in sorted_red_pairs {
+        if polygon.contains(&red_pair.geo_rectangle()) {
+            area = red_pair.area;
             break;
         }
     }
@@ -51,93 +55,4 @@ pub fn new_from_data_file(data_file_path: &str) -> (Vec<Coord2D >, Vec<Coord2DPa
     sorted_red_pairs.sort_by(compare_area);
     sorted_red_pairs.reverse();
     (red_coords, sorted_red_pairs)
-}
-
-pub fn print(coords: Vec<Coord2D >) {
-    let grid_row = vec!['.'; (coords.max_x() + 1) as usize];
-    let mut grid: Vec<Vec<char>> = vec![];
-    for _ in 0..(coords.max_y() + 1) {
-        grid.push(grid_row.clone());
-    }
-    for point in coords.clone() {
-        grid[(point.y) as usize][(point.x) as usize] = '@';
-    }
-    for row in grid {
-        let row_string: String = row.iter().map(|x| x.to_string()).collect();
-        println!("{}", row_string);
-    }
-}
-
-pub fn fill_in_green_squares(coords: &mut Vec<Coord2D >) {
-    let first_and_last_coords = (coords[0].clone(), coords[coords.len() - 1].clone());
-    for i in 0..coords.len() - 1 {
-        fill_in_green_squares_for_coords(coords, coords[i].clone(), coords[i + 1].clone());
-    }
-    fill_in_green_squares_for_coords(coords, first_and_last_coords.0, first_and_last_coords.1);
-    log::debug!("Filled in green squares, total coords now: {}", coords.len());
-    log::debug!("Min y: {}, Max y: {}", coords.min_y(), coords.max_y());
-    for row_index in coords.min_y()..=coords.max_y() {
-        let min_x = coords.iter().filter(|p| p.y == row_index).map(|p| p.x).min().expect("Could not find min");
-        let max_x = coords.iter().filter(|p| p.y == row_index).map(|p| p.x).max().expect("Could not find max");
-        for x in min_x + 1..max_x {
-            if !coords.contains(&Coord2D { x, y: row_index }) {
-                coords.push(Coord2D { x, y: row_index });
-            }
-        }
-    }
-}
-
-pub fn fill_in_green_squares_for_coords(coords: &mut Vec<Coord2D >, point_1: Coord2D, point_2: Coord2D) {
-    if point_1.x == point_2.x {
-        if point_1.y < point_2.y {
-            for j in point_1.y + 1..point_2.y {
-                coords.push(Coord2D { x: point_1.x, y: j } );
-            }
-        } else if point_1.y > point_2.y {
-            for j in point_2.y + 1..point_1.y {
-                coords.push(Coord2D { x: point_1.x, y: j } );
-            }
-        }
-    } else if point_1.y == point_2.y {
-        if point_1.x < point_2.x {
-            for j in point_1.x + 1..point_2.x {
-                coords.push(Coord2D { x: j, y: point_1.y } );
-            }
-        } else if point_1.x > point_2.x {
-            for j in point_2.x + 1..point_1.x {
-                coords.push(Coord2D { x: j, y: point_1.y } );
-            }
-        }
-    } else {
-        panic!("Coordinates do not form a chain");
-    }
-    // coords
-}
-
-pub fn set_of_coords_in_rectangle(p: Coord2D, q: Coord2D) -> HashSet<Coord2D> {
-    let mut coords_in_rectangle: HashSet<Coord2D> = HashSet::new();
-    let min_x: i64;
-    let max_x: i64;
-    let min_y: i64;
-    let max_y: i64;
-    if p.x <= q.x {
-        min_x = p.x;
-        max_x = q.x;
-    } else {
-        min_x = q.x;
-        max_x = p.x;
-    }
-    if p.y <= q.y {
-        min_y = p.y;
-        max_y = q.y;
-    } else {
-        min_y = q.y;
-        max_y = p.y;
-    }
-    for x in min_x..=max_x {
-        for y in min_y..=max_y {
-            coords_in_rectangle.insert(Coord2D { x, y });
-        }
-    }
-    coords_in_rectangle
 }

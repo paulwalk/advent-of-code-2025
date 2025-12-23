@@ -1,8 +1,9 @@
-use flexi_logger::{style, DeferredNow};
+use flexi_logger::{style, DeferredNow, LogSpecification};
 use log::Record;
 
-pub fn configure_flexi_logger(log_level: String) -> Result<(), Box<dyn std::error::Error>> {
-    flexi_logger::Logger::try_with_str(log_level)?.log_to_stdout().set_palette("1;5;32;3;-".parse()?).format(custom_logging_format).start()?;
+pub fn configure_flexi_logger(log_spec: String) -> Result<(), Box<dyn std::error::Error>> {
+    let spec = LogSpecification::parse(log_spec).unwrap();
+    flexi_logger::Logger::with(spec).log_to_stdout().set_palette("1;5;32;3;-".parse()?).format(custom_logging_format).start()?;
     log::debug!("Debug level logging is enabled");
     Ok(())
 }
