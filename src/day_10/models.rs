@@ -18,3 +18,4 @@ impl Light {
 pub fn light_vector_from_chars(chars: Vec<char>) -> Vec<Light> {
     chars.into_iter().map(Light::from_char).collect()
 }
+
