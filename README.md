@@ -4,7 +4,7 @@ This is the result of my playing with *[Advent of Code 2025](https://adventofcod
 
 Because Eric creates these puzzles to be manageable in any reasonable programming language, I have used them over the years to teach myself new languages and techniques. This year, for me, it was the turn of Rust.
 
-There are 12 days of puzzles. Most days have two parts. This year I got as far as Day 8. I can't commit any more time to this so I'm going to leave it there.
+There are 12 days of puzzles. Most days have two parts. This year I got as far as completing Day 9. I can't commit any more time to this so I'm going to leave it there.
 
 I learned a lot about Rust from this which was the main point for me, and I had fun doing it :-)
 

@@ -92,6 +92,13 @@ fn main() {
             let answer = day_9::solver::solve_pt_2(&day.data_path);
             log::info!("Solved {} part 2: answer={}", day.label(), answer);
         }
+        Commands::Day10 {} => {
+            let day = Day::new(10, puzzle_dir);
+            let answer = day_10::solver::solve_pt_1(&day.test_data_path);
+            log::info!("Solved {} part 1: answer={}", day.label(), answer);
+            let answer = day_10::solver::solve_pt_2(&day.test_data_path);
+            log::info!("Solved {} part 2: answer={}", day.label(), answer);
+        }
     }
     log::info!("Process Completed");
 }
