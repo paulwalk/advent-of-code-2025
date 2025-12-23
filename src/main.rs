@@ -20,6 +20,7 @@ mod logging;
 mod scratch;
 mod utilities;
 mod models;
+mod day_10;
 
 fn main() {
     let app_config = &AppConfiguration::new();
