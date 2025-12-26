@@ -1,6 +1,6 @@
-use crate::day_8::model::{Circuits};
-use crate::utilities::read_lines;
-use crate::models::coords_3d::{compare_distance, Coord3D, Coord3DPair};
+use crate::day_8::circuits::{Circuits};
+use crate::lib_common::utilities::read_lines;
+use crate::day_8::coords_3d::{compare_distance, Coord3D, Coord3DPair};
 
 pub(crate) const DAY_NUM: u8 = 8;
 

@@ -1,4 +1,5 @@
 use std::cmp::Ordering;
+use crate::lib_common::traits::MinMax;
 
 #[derive(Debug, Clone, Hash, Eq, PartialEq)]
 pub struct Coord3D {
@@ -29,4 +30,22 @@ pub fn compare_distance(a: &Coord3DPair, b: &Coord3DPair) -> Ordering {
         return Ordering::Greater;
     }
     Ordering::Equal
+}
+
+impl MinMax for Vec<Coord3D> {
+    fn min_x(&self) -> i64 {
+        self.iter().map(|p| p.x).min().unwrap()
+    }
+
+    fn max_x(&self) -> i64 {
+        self.iter().map(|p| p.x).max().unwrap()
+    }
+
+    fn min_y(&self) -> i64 {
+        self.iter().map(|p| p.y).min().unwrap()
+    }
+
+    fn max_y(&self) -> i64 {
+        self.iter().map(|p| p.y).max().unwrap()
+    }
 }

@@ -18,8 +18,7 @@ mod day_8;
 mod day_9;
 mod logging;
 mod scratch;
-mod utilities;
-mod models;
+mod lib_common;
 mod day_10;
 
 fn main() {
@@ -94,7 +93,7 @@ fn main() {
         }
         Commands::Day10 {} => {
             let day = Day::new(10, puzzle_dir);
-            let answer = day_10::solver::solve_pt_1(&day.test_data_path);
+            let answer = day_10::solver::solve_pt_1(&day.data_path);
             log::info!("Solved {} part 1: answer={}", day.label(), answer);
             let answer = day_10::solver::solve_pt_2(&day.test_data_path);
             log::info!("Solved {} part 2: answer={}", day.label(), answer);

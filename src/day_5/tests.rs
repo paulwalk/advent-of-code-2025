@@ -5,28 +5,28 @@ mod tests {
     use crate::day::Day;
 
     #[test]
-    fn test_solve_part_1_test_data() {
+    fn test_solve_day_5_part_1_test_data() {
         let app_config = &AppConfiguration::new();
         let day: Day = Day::new(DAY_NUM, app_config.puzzle_dir.clone());
         assert_eq!(solve_pt_1(day.test_data_path.as_str()), 3);
     }
 
     #[test]
-    fn test_solve_part_2_test_data() {
+    fn test_solve_day_5_part_2_test_data() {
         let app_config = &AppConfiguration::new();
         let day: Day = Day::new(DAY_NUM, app_config.puzzle_dir.clone());
         assert_eq!(solve_pt_2(day.test_data_path.as_str()), 14);
     }
 
     #[test]
-    fn test_solve_part_1() {
+    fn test_solve_day_5_part_1() {
         let app_config = &AppConfiguration::new();
         let day: Day = Day::new(DAY_NUM, app_config.puzzle_dir.clone());
         assert_eq!(solve_pt_1(day.data_path.as_str()), app_config.answers[&DAY_NUM][0]);
     }
 
     #[test]
-    fn test_solve_part_2() {
+    fn test_solve_day_5_part_2() {
         let app_config = &AppConfiguration::new();
         let day: Day = Day::new(DAY_NUM, app_config.puzzle_dir.clone());
         assert_eq!(solve_pt_2(day.data_path.as_str()), app_config.answers[&DAY_NUM][1]);

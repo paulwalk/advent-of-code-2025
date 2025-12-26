@@ -1,7 +1,8 @@
+use crate::lib_common::traits::MinMax;
+use geo::{coord, Rect};
 use std::cmp::Ordering;
-use geo::{coord, point, Point, Rect};
 
-#[derive(Hash,Debug, Clone,Eq, PartialEq)]
+#[derive(Hash, Debug, Clone, Eq, PartialEq)]
 pub struct Coord2D {
     pub x: i64,
     pub y: i64,
@@ -19,11 +20,9 @@ impl Coord2DPair {
         let area = area(p.clone(), q.clone());
         Coord2DPair { p, q, area }
     }
-    
+
     pub fn geo_rectangle(&self) -> Rect {
-        Rect::new(
-            coord! { x: self.p.x as f64, y: self.p.y as f64},
-            coord! { x: self.q.x as f64, y: self.q.y as f64})
+        Rect::new(coord! { x: self.p.x as f64, y: self.p.y as f64}, coord! { x: self.q.x as f64, y: self.q.y as f64})
     }
 }
 
@@ -53,4 +52,22 @@ pub fn area(p: Coord2D, q: Coord2D) -> u64 {
     width += 1;
     let area: u64 = (width * height) as u64;
     area
+}
+
+impl MinMax for Vec<Coord2D> {
+    fn min_x(&self) -> i64 {
+        self.iter().map(|p| p.x).min().unwrap()
+    }
+
+    fn max_x(&self) -> i64 {
+        self.iter().map(|p| p.x).max().unwrap()
+    }
+
+    fn min_y(&self) -> i64 {
+        self.iter().map(|p| p.y).min().unwrap()
+    }
+
+    fn max_y(&self) -> i64 {
+        self.iter().map(|p| p.y).max().unwrap()
+    }
 }

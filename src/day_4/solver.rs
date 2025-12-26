@@ -1,4 +1,4 @@
-use crate::utilities::read_lines;
+use crate::lib_common::utilities::read_lines;
 
 pub(crate) const DAY_NUM: u8 = 4;
 

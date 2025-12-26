@@ -1,6 +1,6 @@
 use std::collections::{HashMap, HashSet};
 use uuid::Uuid;
-use crate::models::coords_3d::{Coord3D, Coord3DPair};
+use crate::day_8::coords_3d::{Coord3D, Coord3DPair};
 
 
 
