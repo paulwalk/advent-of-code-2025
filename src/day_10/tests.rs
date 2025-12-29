@@ -15,7 +15,7 @@ mod tests {
     fn test_solve_day_10_part_2_test_data() {
         let app_config = &AppConfiguration::new();
         let day: Day = Day::new(DAY_NUM, app_config.puzzle_dir.clone());
-        assert_eq!(solve_pt_2(day.test_data_path.as_str()), 1);
+        assert_eq!(solve_pt_2(day.test_data_path.as_str()), 33);
     }
 
     #[test]
